@@ -3,6 +3,7 @@ from nonebot import logger, on_command
 from nonebot.adapters import Message
 from nonebot.matcher import Matcher
 from nonebot.params import CommandArg
+
 tiangou_matcher = on_command("一句")
 meiyan_matcher = on_command("一言")
 dujitang_matcher = on_command("毒鸡汤")
@@ -44,9 +45,9 @@ async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
     if response.is_error:
         logger.error("获取毒鸡汤失败")
         return
-    data2 = response.json()
+    data = response.json()
     add = ""
-    if msg := data2["data"]:
+    if msg := data["data"]:
          add += f"{msg}"
     await matcher.finish(msg)
 
@@ -60,9 +61,9 @@ async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
     if response.is_error:
         logger.error("获取彩虹屁失败")
         return
-    data1 = response.json()
+    data = response.json()
     add = ""
-    if msg := data1["data"]:
+    if msg := data["data"]:
          add += f"{msg}"
     await matcher.finish(add)
 
