@@ -8,7 +8,7 @@ meiyan_matcher = on_command("一言")
 dujitang_matcher = on_command("毒鸡汤")
 caihongpi_matcher = on_command("彩虹屁")
 
-
+#舔狗日记
 @tiangou_matcher.handle()
 async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
     if args:
@@ -21,6 +21,7 @@ async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
     msg = response.text
     await matcher.finish(msg)
 
+#一句美言
 @meiyan_matcher.handle()
 async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
     if args:
@@ -33,6 +34,7 @@ async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
     msg = response.text
     await matcher.finish(msg)
 
+#毒鸡汤
 @dujitang_matcher.handle()
 async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
     if args:
@@ -48,6 +50,7 @@ async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
          add += f"{msg}"
     await matcher.finish(msg)
 
+#彩虹屁
 @caihongpi_matcher.handle()
 async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
     if args:
