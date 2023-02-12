@@ -8,6 +8,7 @@ tiangou_matcher = on_command("一句")
 meiyan_matcher = on_command("一言")
 dujitang_matcher = on_command("毒鸡汤")
 caihongpi_matcher = on_command("彩虹屁")
+wangyiyun_matcher = on_command("网易云热评")
 
 #舔狗日记
 @tiangou_matcher.handle()
@@ -67,3 +68,15 @@ async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
          add += f"{msg}"
     await matcher.finish(add)
 
+#网易云热评
+@wangyiyun_matcher.handle()
+async def hitokoto(matcher: Matcher, args: Message = CommandArg()):
+    if args:
+        return
+    async with httpx.AsyncClient() as client:
+        response = await client.get("https://cloud.qqshabi.cn/api/comments/api.php?format=text")
+    if response.is_error:
+        logger.error("获取网易云热评失败")
+        return
+    msg = response.text
+    await matcher.finish(msg)
